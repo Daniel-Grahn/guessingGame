@@ -1,5 +1,6 @@
 public class GuessingGame {
     public static void main(String[] args) {
-        //Main metoden här
+        Guesser theGuess = new Guesser();
+        theGuess.Guesser(0,1000);
     }
 }

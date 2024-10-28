@@ -1,0 +1,53 @@
+Sattsar på VG.
+
+Vad är pull repektive push?
+pull är till för att uppdatera ens egna repository från andra 
+användare för att sammanfoga och hämta ändringar.
+push däremot är till för att skicka ut din ändringar så att andra 
+utvecklare kan se och anväda dem.
+
+
+
+När använder man log respektive status?
+log används för att se historiken över de senaste commitsen till de
+försata comitsen på den aktuella branchen. När man anväder log får 
+man också en unik hash-kod för varje commit. Den kan exempelvis
+anvädas till git diff för att se förändringarna mellan två commits.
+status anväds för se vad som hänt och vad som är pågång. Man kan 
+också få vet vilken branch man är på och om det är något som måste 
+commitas eller addas.   
+
+
+
+Vad är en Git branch och varför är de viktiga?
+Git branch kan anvädas för att arbeta med sin kod i en isolerad 
+miljö, från anndra ändringar i koden. Exempel på detta kan vara att 
+fixa buggar eller arbeta på en ny version av koden.
+
+
+
+
+Det finns flera sätt att rulla tillbaka koden till ett tidigare 
+tillstånd. Förklara skillnaden och motivera när man skulle använda 
+den ena eller andra metoden. Ge exempel på de kommandon du använder 
+för att göra detta och vissa att det fungerar, vilken output du fick 
+från git-kommandona.
+
+reset:Flyttar HEAD till en tidigare commit och påverkar commit 
+historiken. Det finns tre typer. 
+--soft:Flyttar HEAD, men bevarar ändringar i staging area och
+arbetskatalog.
+--mixt(standard):Flyttar HEAD och avmarkerar ändringar i staging area.
+--hard:Flyttar HEAD och tar bort alla ändringar permanent.
+
+revert:Skapar en ny commit som ångrar en tidigare commit.Används
+för att säkert ångra ändringar utan att ta bort historik.
+Exempel: git revert <hash-cod>
+
+
+restore:
+Anväds för att återställa en fil eller navigera till en specifik 
+commit. Då flyttas HEAD referensen till en specifik commit.
+Exempel: git restore GuessingGame.java
+Detta påverkar inte historiken men tar java-filen till den senaste
+commiten.

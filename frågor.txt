@@ -51,3 +51,51 @@ commit. Då flyttas HEAD referensen till en specifik commit.
 Exempel: git restore GuessingGame.java
 Detta påverkar inte historiken men tar java-filen till den senaste
 commiten.
+
+-----------------------------------------------
+
+Beskriv och jämför hur man kan använda git rebase och git merge i ett
+scenario där flera utvecklare jobbar på olika feature branches. 
+Diskutera fördelarna och nackdelarna med båda teknikerna, samt hur de
+påverkar historiken. Uppgift: Skapa ett repo med två eller fler 
+feature branches som utvecklare arbetar på. Beskriv hur du löser
+konflikter som uppstår under rebase och merge och visa slutresultatet 
+i historiken.
+Exempel: Använd kommandon som git rebase, git merge för att 
+illustrera skillnaderna.
+Motivering: Förklara varför rebase ibland används i stället för merge 
+för att hålla en renare historik och när merge är att föredra för att 
+bibehålla kontext mellan commits.
+
+Scenario:Tänk dig att du och dina arbetskamrater jobbar tillsammans 
+i ett Git-repository med huvudgrenen (main) och två branches 
+(gren-1) och (gren-2). Du jobbar med gren-1 och dina 
+arbetskamrater med gren-2. Ni jobbar paralelt med era grenar men 
+ni så småningom sammansmälta era grenar med main på ett så effektift
+sätt som möjligt.       
+
+rebase: Om vi vill anväda git rebase på min branch (gren-1) med 
+huvudgrenen (main), kommer det att omskriva historiken. Det kommer
+att se ut som om all (gren-1) commits skapades ovanpå (main). 
+Fördelen är att historiken kommer att se ren ut och vara mer 
+lättnavigerad men, det kommer förendra commit-historiken. 
+git rebase bör därför undvikas om det finns flera branches
+exempelvis (gren-2). Detta effersom det kan orsaka konflikter 
+mellan andras grenar. En till nackdel är att rebase gör att det ser
+ut som att alla förändringar skedde sekventiellt utan sidogrenar,
+vilket kan förvirra om man vill se när exempel (gren-2) utvecklades 
+parallellt. 
+
+merge: Om vi istället anväder git merge med min branch (gren-1) med
+(main) branchen, kommer det skapa en merge commit som sammanflättar
+vår grenars commits. Med andra ord kommer det att bevara
+historiken, men blandat mellan min och main branchen, vilken kan var
+både positivt och negativt. Detta eftersom historiken blir oren och
+det kan bli svårt att följa vad som faktiskt har förändras om man
+anväder git log men man ser det hela i en kronologisk ordning.
+
+Movtivering:Båda sätten är bra men  mycket handlar om hur arbetete är
+uppbyggt. merge är mer grovt för ett team som behöver behålla en
+gemensam historik utan omskrivningar, medans rebase är mer 
+"kronologisk" av sig. Dock bör man vara försiktig med rebase så att 
+det inte blir någon merge konflikt.

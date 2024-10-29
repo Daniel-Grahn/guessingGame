@@ -25,8 +25,6 @@ miljö, från anndra ändringar i koden. Exempel på detta kan vara att
 fixa buggar eller arbeta på en ny version av koden.
 
 
-
-
 Det finns flera sätt att rulla tillbaka koden till ett tidigare 
 tillstånd. Förklara skillnaden och motivera när man skulle använda 
 den ena eller andra metoden. Ge exempel på de kommandon du använder 
@@ -39,11 +37,14 @@ historiken. Det finns tre typer.
 arbetskatalog.
 --mixt(standard):Flyttar HEAD och avmarkerar ändringar i staging area.
 --hard:Flyttar HEAD och tar bort alla ändringar permanent.
+Ett exempel med soft:
+git reset --soft HEAD~1
+HEAD is now at [föregåend commit]
 
 revert:Skapar en ny commit som ångrar en tidigare commit.Används
 för att säkert ångra ändringar utan att ta bort historik.
 Exempel: git revert <hash-cod>
-
+Revert "commit message from <hash-cod>"
 
 restore:
 Anväds för att återställa en fil eller navigera till en specifik 
@@ -51,8 +52,17 @@ commit. Då flyttas HEAD referensen till en specifik commit.
 Exempel: git restore GuessingGame.java
 Detta påverkar inte historiken men tar java-filen till den senaste
 commiten.
+Exempel: Om du har gjort ändringar i file.txt och vill återställa
+den till en specifik commit.
+git restore --source=HEAD~1 file.txt
+Restored file.txt
 
------------------------------------------------
+skilnader: Reset används för att omskriva historik i privata brancher,
+revert för att ångra commits i delade projekt utan att ändra 
+historik, och restore för att återställa filer till tidigare 
+tillstånd utan att röra historiken.
+
+-----------------------------VG-Delen-----------------------------
 
 Beskriv och jämför hur man kan använda git rebase och git merge i ett
 scenario där flera utvecklare jobbar på olika feature branches. 
@@ -94,7 +104,7 @@ både positivt och negativt. Detta eftersom historiken blir oren och
 det kan bli svårt att följa vad som faktiskt har förändras om man
 anväder git log men man ser det hela i en kronologisk ordning.
 
-Movtivering:Båda sätten är bra men  mycket handlar om hur arbetete är
+Movtivering:Båda sätten är bra men mycket handlar om hur arbetete är
 uppbyggt. merge är mer grovt för ett team som behöver behålla en
 gemensam historik utan omskrivningar, medans rebase är mer 
 "kronologisk" av sig. Dock bör man vara försiktig med rebase så att 
